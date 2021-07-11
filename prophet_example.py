@@ -13,8 +13,8 @@ path_to_data = "data/BAJAJFINSV.csv"
 stock_name = "BAJAJFINSV"
 
 # (neptune) create run
-run = neptune.init(project='common/project-time-series-forecasting',
-                   tags=['prophet'])
+run = neptune.init(project="common/project-time-series-forecasting",
+                   tags=["prophet"])
 
 # (neptune) log stock name to the run
 run["info/stock_name"] = stock_name
