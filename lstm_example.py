@@ -18,9 +18,9 @@ params = {
     "loss": "mean_squared_error",
     "optimizer": "adam",
     "dropout": 0.2,
-    "lstm_units": 20,
-    "epochs": 2,
-    "batch_size": 64
+    "lstm_units": 30,
+    "epochs": 10,
+    "batch_size": 128
 }
 
 # (neptune) create run
