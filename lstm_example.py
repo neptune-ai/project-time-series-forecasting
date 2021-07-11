@@ -14,9 +14,21 @@ np.random.seed(9476)
 path_to_data = "data/BAJAJFINSV.csv"
 stock_name = "BAJAJFINSV"
 
+params = {
+    "loss": "mean_squared_error",
+    "optimizer": "adam",
+    "dropout": 0.2,
+    "lstm_units": 20,
+    "epochs": 2,
+    "batch_size": 64
+}
+
 # (neptune) create run
 run = neptune.init(project="common/project-time-series-forecasting",
                    tags=["lstm", "keras"])
+
+# (neptune) log model params
+run["LSTM/params"] = params
 
 # (neptune) log stock name to the run
 run["info/stock_name"] = stock_name
@@ -39,17 +51,6 @@ x_train, y_train, x_test, scaler, df_test = prepare_data_for_lstm(df, valid_date
 
 # (neptune) log year for train/valid split
 run["valid/split"] = valid_date_split
-
-params = {
-    "loss": "mean_squared_error",
-    "optimizer": "adam",
-    "dropout": 0.2,
-    "lstm_units": 20,
-    "epochs": 2,
-    "batch_size": 64}
-
-# (neptune) log model params
-run["LSTM/params"] = params
 
 model = get_model(params=params, input_shape=x_train.shape[1])
 
