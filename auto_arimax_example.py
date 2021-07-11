@@ -16,7 +16,7 @@ run = neptune.init(project='common/project-time-series-forecasting',
                    tags=['arimax'])
 
 # (neptune) log stock name to the run
-run["info/stock_name".format(stock_name)] = stock_name
+run["info/stock_name"] = stock_name
 
 # load time series data (stock prices)
 df = pd.read_csv(path_to_data)
@@ -26,7 +26,7 @@ ax = df.VWAP.plot(figsize=(9, 6))
 ax.grid("both")
 
 # (neptune) log VMAP chart as an interactive visualization
-run["visualizations/{}/VMAP".format(stock_name)] = neptune.types.File.as_image(ax.figure)
+run["visualizations/VMAP"] = neptune.types.File.as_image(ax.figure)
 plt.close("all")
 
 # feature engineering
@@ -38,7 +38,7 @@ df_train = df_processed[df_processed.Date < valid_date_split]
 df_valid = df_processed[df_processed.Date >= valid_date_split]
 
 # (neptune) log year for train/valid split
-run["info/valid_date_split".format(stock_name)] = valid_date_split
+run["info/valid_date_split"] = valid_date_split
 
 # (neptune) log exogenous feature names
 run["exogenous_features"] = exogenous_features
@@ -59,7 +59,7 @@ ax = df_valid[["VWAP", "Forecast_ARIMAX"]].plot(figsize=(9, 6))
 ax.grid("both")
 
 # (neptune) log data and forecast as an interactive chart
-run["visualizations/{}/VMAP-forecast".format(stock_name)] = neptune.types.File.as_html(ax.figure)
+run["visualizations/VMAP-forecast"] = neptune.types.File.as_html(ax.figure)
 plt.close("all")
 
 # (neptune) log final metrics
