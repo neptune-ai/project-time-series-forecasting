@@ -78,8 +78,8 @@ run["visualizations/VWAP-forecast"] = neptune.types.File.as_html(ax.figure)
 plt.close("all")
 
 # (neptune) log final metrics
-run["valid/lstm/rmse"] = np.sqrt(mean_squared_error(df_test.VWAP, df_test.Forecast_LSTM))
-run["valid/lstm/mae"] = mean_absolute_error(df_test.VWAP, df_test.Forecast_LSTM)
+run["valid/rmse"] = np.sqrt(mean_squared_error(df_test.VWAP, df_test.Forecast_LSTM))
+run["valid/mae"] = mean_absolute_error(df_test.VWAP, df_test.Forecast_LSTM)
 
 # (neptune) save model weights
 model.save('model_weights')

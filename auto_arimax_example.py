@@ -63,5 +63,5 @@ run["visualizations/VMAP-forecast"] = neptune.types.File.as_html(ax.figure)
 plt.close("all")
 
 # (neptune) log final metrics
-run["valid/arimax/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_ARIMAX))
-run["valid/arimax/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_ARIMAX)
+run["valid/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_ARIMAX))
+run["valid/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_ARIMAX)

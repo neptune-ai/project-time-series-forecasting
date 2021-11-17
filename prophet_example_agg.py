@@ -89,7 +89,7 @@ for config in configs:
     plt.close("all")
 
     # (neptune) log final metrics
-    run["valid/prophet/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_Prophet))
-    run["valid/prophet/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_Prophet)
+    run["valid/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_Prophet))
+    run["valid/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_Prophet)
 
     run.stop()
