@@ -44,8 +44,8 @@ for config in configs:
     ax = df.VWAP.plot(figsize=(9, 6))
     ax.grid("both")
 
-    # (neptune) log VMAP chart as an interactive visualization
-    run["visualizations/VMAP_chart"] = neptune.types.File.as_image(ax.figure)
+    # (neptune) log VWAP chart as an interactive visualization
+    run["visualizations/VWAP_chart"] = neptune.types.File.as_image(ax.figure)
     plt.close("all")
 
     # feature engineering
@@ -85,11 +85,11 @@ for config in configs:
     ax.grid("both")
 
     # (neptune) log data and forecast as an interactive chart
-    run["visualizations/VMAP-forecast"] = neptune.types.File.as_html(ax.figure)
+    run["visualizations/VWAP-forecast"] = neptune.types.File.as_html(ax.figure)
     plt.close("all")
 
     # (neptune) log final metrics
-    run["valid/prophet/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_Prophet))
-    run["valid/prophet/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_Prophet)
+    run["valid/rmse"] = np.sqrt(mean_squared_error(df_valid.VWAP, df_valid.Forecast_Prophet))
+    run["valid/mae"] = mean_absolute_error(df_valid.VWAP, df_valid.Forecast_Prophet)
 
     run.stop()
