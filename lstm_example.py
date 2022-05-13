@@ -41,7 +41,7 @@ df.index = df['Date']
 ax = df.VWAP.plot(figsize=(9, 6))
 ax.grid("both")
 
-# (neptune) log VWAP chart as an interactive visualization
+# (neptune) log VWAP chart as an static visualization
 run["visualizations/VWAP_chart"] = neptune.types.File.as_image(ax.figure)
 plt.close("all")
 
