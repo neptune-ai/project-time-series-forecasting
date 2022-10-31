@@ -53,8 +53,8 @@ def main():
     rmse = np.sqrt(np.mean((y_valid - y_pred) ** 2))
 
     # (neptune) Log scores
-    run["training/val/r2_score"] = model_score
-    run["training/val/wmae_score"] = wmae_score
+    run["training/val/r2"] = model_score
+    run["training/val/wmae"] = wmae_score
     run["training/val/rmse"] = rmse
 
     # Visualize predictions

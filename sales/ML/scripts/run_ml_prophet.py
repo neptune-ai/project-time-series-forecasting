@@ -56,8 +56,8 @@ def main():
     rmse = mean_squared_error(y_valid, forecast.yhat)
 
     # (neptune) Log scores
-    run["training/val/r2_score"] = r2
-    run["training/val/wmae_score"] = wmae
+    run["training/val/r2"] = r2
+    run["training/val/wmae"] = wmae
     run["training/val/rmse"] = rmse
 
     # Create predicitions visualizations
