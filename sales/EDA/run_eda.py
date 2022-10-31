@@ -3,7 +3,6 @@ from neptune.new.types import File
 import seaborn as sns
 import matplotlib.pyplot as plt
 from utils import *
-import os
 
 sns.set()
 plt.rcParams["figure.figsize"] = 15, 8
