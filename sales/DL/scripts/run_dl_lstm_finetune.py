@@ -55,6 +55,7 @@ def main():
         dropout=params["dropout"],
         learning_rate=params["learning_rate"],
     )
+
     model = model.load_from_checkpoint('checkpoint.ckpt')
 
     # Train model
