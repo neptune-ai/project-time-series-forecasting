@@ -15,7 +15,9 @@ class LSTMRegressor(pl.LightningModule):
         batch_first=True,
     ):
         super().__init__()
-        self.save_hyperparameters(ignore=["criterion"])
+        
+        self.save_hyperparameters()
+
         # loss
         self.criterion = criterion
 
