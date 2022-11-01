@@ -1,3 +1,4 @@
+from logging import logProcesses
 import torch.nn as nn
 import pytorch_lightning as pl
 import torch
@@ -15,7 +16,7 @@ class LSTMRegressor(pl.LightningModule):
         batch_first=True,
     ):
         super().__init__()
-        
+
         self.save_hyperparameters()
 
         # loss
@@ -45,24 +46,22 @@ class LSTMRegressor(pl.LightningModule):
 
     def forward(self, x):
         output, _ = self.lstm(x)
-        y_pred = self.regressor(output[:, -1, :])
-        return y_pred
+        return self.regressor(output[:, -1, :])
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.learning_rate)
 
     def training_step(self, batch, batch_idx):
-        x, y = batch
-        y_hat = self(x)
-        loss = self.criterion(y_hat, y)
-        self.log("train_loss", loss, on_step=True, on_epoch=True, prog_bar=True)
-        return loss
+        return self._batch_step(batch, loss_name="train_loss")
 
     def validation_step(self, batch, batch_idx):
+        return self._batch_step(batch, loss_name="val_loss")
+
+    def _batch_step(self, batch, loss_name):
         x, y = batch
         y_hat = self(x)
         loss = self.criterion(y_hat, y)
-        self.log("val_loss", loss, on_step=True, on_epoch=True, prog_bar=True)
+        self.log(loss_name, loss, on_step=True, on_epoch=True, prog_bar=True)
         return loss
 
     def predict(self, test_loader):
