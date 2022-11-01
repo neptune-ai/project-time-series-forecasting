@@ -6,7 +6,7 @@ from utils import *
 import seaborn as sns
 import matplotlib.pyplot as plt
 from prophet import Prophet
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 sns.set()
 plt.rcParams["figure.figsize"] = 15, 8
@@ -54,11 +54,13 @@ def main():
     r2 = r2_score(y_valid, forecast.yhat)
     wmae = WMAE(X_valid, y_valid, forecast.yhat)
     rmse = mean_squared_error(y_valid, forecast.yhat)
+    mae = mean_absolute_error(y_valid, forecast.yhat),
 
     # (neptune) Log scores
     run["training/val/r2"] = r2
     run["training/val/wmae"] = wmae
     run["training/val/rmse"] = rmse
+    run["training/val/mae"] = mae
 
     # Create predicitions visualizations
     fig1 = model.plot(forecast)
