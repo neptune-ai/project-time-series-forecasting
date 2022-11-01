@@ -98,10 +98,6 @@ class WalmartSalesDataModule(pl.LightningDataModule):
 
         return data_loader, features_ds
 
-    def onehot_encode_pd(self, df, col_names):
-        dummies = pd.get_dummies(df[col_names], columns=col_names)
-        return pd.concat([df, dummies], axis=1)
-
     def get_train_valid_split(self, df):
 
         X = df["Weekly_Sales"].values.reshape((-1, 1))
