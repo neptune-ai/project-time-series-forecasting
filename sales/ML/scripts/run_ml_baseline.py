@@ -5,7 +5,7 @@ from neptune.new.integrations.xgboost import NeptuneCallback
 from utils import *
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 sns.set()
 plt.rcParams["figure.figsize"] = 15, 8
