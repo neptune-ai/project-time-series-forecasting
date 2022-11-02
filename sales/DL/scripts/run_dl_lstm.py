@@ -15,7 +15,7 @@ def main():
         "seq_len": 8,
         "batch_size": 128,
         "criterion": nn.MSELoss(),
-        "max_epochs": 1,
+        "max_epochs": 10,
         "n_features": 1,
         "hidden_dim": 512,
         "n_layers": 5,
