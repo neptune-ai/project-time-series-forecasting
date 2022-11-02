@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+
 def pre_process_data(df: pd.DataFrame):
 
     # process dates and create year, month and week features
@@ -26,6 +27,7 @@ def pre_process_data(df: pd.DataFrame):
     df.insert(len(df.columns), "Weekly_Sales", weekly_sales)
     return df
 
+
 def load_data(path, cache=False, all_df=False):
     if os.path.exists("aggregate_data.csv") and cache == True:
         return pd.read_csv(f"{path}/aggregate_data.csv", index_col=0)
@@ -39,6 +41,7 @@ def load_data(path, cache=False, all_df=False):
     df.to_csv(f"{path}/aggregate_data.csv")
 
     return (df, df_train, df_fts, df_stores) if all_df else df
+
 
 def inverse_transform(scaler, df, columns):
     for col in columns:

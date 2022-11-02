@@ -42,7 +42,8 @@ def main():
 
     # Train model
     model = xgb.XGBRegressor(random_state=42, callbacks=[neptune_callback]).fit(
-        X_train, y_train,
+        X_train,
+        y_train,
     )
 
     # Calculate scores

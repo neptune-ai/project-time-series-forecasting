@@ -48,7 +48,7 @@ def main():
         n_layers=params["n_layers"],
         dropout=params["dropout"],
         learning_rate=params["learning_rate"],
-        seq_len=params["seq_len"]
+        seq_len=params["seq_len"],
     )
 
     # Train model
@@ -76,7 +76,9 @@ def main():
     project_key = neptune_logger.experiment["sys/id"].fetch().split("-")[0]
 
     try:
-        model = neptune.init_model(key=model_key,)
+        model = neptune.init_model(
+            key=model_key,
+        )
 
         print("Creating a new model version...")
         model_version = neptune.init_model_version(model=f"{project_key}-{model_key}")
@@ -86,7 +88,9 @@ def main():
             "A model with the provided key `{model_key}` already exists in this project."
         )
         print("Creating a new model version...")
-        model_version = neptune.init_model_version(model=f"{project_key}-{model_key}",)
+        model_version = neptune.init_model_version(
+            model=f"{project_key}-{model_key}",
+        )
 
     # (neptune) Log run details
     model_version["run/id"] = neptune_logger.experiment["sys/id"].fetch()
