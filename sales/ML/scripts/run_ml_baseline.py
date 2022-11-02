@@ -1,4 +1,3 @@
-from gc import callbacks
 import xgboost as xgb
 import neptune.new as neptune
 from neptune.new.types import File
