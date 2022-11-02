@@ -43,8 +43,7 @@ def main():
 
     # Train model
     model = xgb.XGBRegressor(random_state=42, callbacks=[neptune_callback]).fit(
-        X_train,
-        y_train,
+        X_train, y_train,
     )
 
     # Calculate scores
@@ -52,7 +51,7 @@ def main():
     y_pred = model.predict(X_valid)
     wmae_score = WMAE(X_valid, y_valid, y_pred)
     rmse = mean_squared_error(y_valid, y_pred)
-    mae = mean_absolute_error(y_valid, y_pred),
+    mae = mean_absolute_error(y_valid, y_pred)
 
     # (neptune) Log scores
     run["training/val/r2"] = model_score

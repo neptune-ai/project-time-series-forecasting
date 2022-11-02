@@ -54,7 +54,7 @@ def main():
     r2 = r2_score(y_valid, forecast.yhat)
     wmae = WMAE(X_valid, y_valid, forecast.yhat)
     rmse = mean_squared_error(y_valid, forecast.yhat)
-    mae = mean_absolute_error(y_valid, forecast.yhat),
+    mae = mean_absolute_error(y_valid, forecast.yhat)
 
     # (neptune) Log scores
     run["training/val/r2"] = r2
