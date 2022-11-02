@@ -7,7 +7,7 @@ import pytorch_lightning as pl
 import pandas as pd
 import numpy as np
 
-from sales.DL.scripts.utils import load_data
+from utils import load_data
 
 
 class TimeseriesDataset(Dataset):
