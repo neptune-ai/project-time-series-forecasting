@@ -36,7 +36,7 @@ def main():
 
     except NeptuneException:
         print(
-            "The model with the provided key `{model_key}` doesn't exists in the `{project_key}` project."
+            "The model with the provided key {model_key} doesn't exists in the {project_key} project."
         )
 
     # (neptune) Download the lastest model checkpoint from model registry
@@ -109,7 +109,7 @@ def main():
 
     except NeptuneException:
         print(
-            "A model with the provided key `{model_key}` already exists in this project."
+            "A model with the provided key {model_key} already exists in this project."
         )
         print("Creating a new model version...")
         model_version = neptune.init_model_version(
