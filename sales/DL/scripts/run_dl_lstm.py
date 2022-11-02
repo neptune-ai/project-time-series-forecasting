@@ -48,6 +48,7 @@ def main():
         n_layers=params["n_layers"],
         dropout=params["dropout"],
         learning_rate=params["learning_rate"],
+        seq_len=params["seq_len"]
     )
 
     # Train model

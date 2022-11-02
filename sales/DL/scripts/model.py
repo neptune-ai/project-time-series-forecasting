@@ -13,6 +13,7 @@ class LSTMRegressor(pl.LightningModule):
         criterion,
         dropout,
         learning_rate,
+        seq_len,
         batch_first=True,
     ):
         super().__init__()
