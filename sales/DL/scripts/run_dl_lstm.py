@@ -92,7 +92,7 @@ def main():
 
     except NeptuneException:
         print(
-            "A model with the provided key {model_key} already exists in this project."
+            f"A model with the provided key {model_key} already exists in this project."
         )
         print("Creating a new model version...")
         model_version = neptune.init_model_version(
