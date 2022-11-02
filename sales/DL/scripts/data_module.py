@@ -7,6 +7,8 @@ import pytorch_lightning as pl
 import pandas as pd
 import numpy as np
 
+from sales.DL.scripts.utils import load_data
+
 
 class TimeseriesDataset(Dataset):
     """
@@ -56,7 +58,7 @@ class WalmartSalesDataModule(pl.LightningDataModule):
         pass
 
     def prepare_data(self):
-        self.df = pd.read_csv(self.path, index_col=0)
+        self.df = load_data(self.path, cache=True)
 
         (
             self.X_train,

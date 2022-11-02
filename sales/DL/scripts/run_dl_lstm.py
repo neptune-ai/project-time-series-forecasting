@@ -38,7 +38,7 @@ def main():
     )
 
     dm = WalmartSalesDataModule(
-        seq_len=params["seq_len"], num_workers=8, path="./sales/data/aggregate_data.csv"
+        seq_len=params["seq_len"], num_workers=8, path="./sales/data"
     )
 
     model = LSTMRegressor(
