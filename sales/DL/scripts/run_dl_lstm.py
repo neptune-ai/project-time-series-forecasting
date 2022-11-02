@@ -9,6 +9,10 @@ from data_module import *
 from model import *
 from utils import *
 
+sns.set()
+plt.rcParams["figure.figsize"] = 15, 8
+plt.rcParams["image.cmap"] = "viridis"
+
 
 def main():
     params = {
