@@ -52,7 +52,7 @@ def main():
 
     # Calculate scores
     r2 = r2_score(y_valid, forecast.yhat)
-    rmse = mean_squared_error(y_valid, forecast.yhat)
+    rmse = mean_squared_error(y_valid, forecast.yhat, squared=False)
     mae = mean_absolute_error(y_valid, forecast.yhat)
 
     # (neptune) Log scores
