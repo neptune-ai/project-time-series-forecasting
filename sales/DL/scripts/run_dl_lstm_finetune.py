@@ -79,7 +79,7 @@ def main():
     # Test model
     test_loader = dm.test_dataloader()
     predictions, values = model.predict(test_loader)
-    df_result = format_predictions(predictions, values, dm.df, dm.scaler)
+    df_result = format_predictions(predictions, values, dm.scaler)
 
     preds_plot = sns.lineplot(data=df_result)
 
