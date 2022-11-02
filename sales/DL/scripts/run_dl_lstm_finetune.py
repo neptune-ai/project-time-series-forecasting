@@ -5,6 +5,7 @@ from neptune.new.types import File
 import neptune.new as neptune
 import pytorch_lightning as pl
 import seaborn as sns
+import matplotlib.pyplot as plt
 from data_module import *
 from model import *
 from utils import *
