@@ -48,7 +48,7 @@ def main():
     # Calculate scores
     model_score = model.score(X_valid, y_valid)
     y_pred = model.predict(X_valid)
-    rmse = mean_squared_error(y_valid, y_pred)
+    rmse = mean_squared_error(y_valid, y_pred, squared=False)
     mae = mean_absolute_error(y_valid, y_pred)
 
     # (neptune) Log scores
