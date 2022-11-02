@@ -31,16 +31,15 @@ def main():
             with_id=f"{project_key}-{model_key}",  # Your model ID here
         )
         model_versions_table = model.fetch_model_versions_table().to_pandas()
-        lastest_model_version_id = (
-            model_versions_table["sys/id"].sort_values().tolist()[-1]
-        )
+        latest_model_version_id = model_versions_table["sys/id"].sort_values().tolist()[-1]
+
     except NeptuneException:
         print(
             "The model with the provided key `{model_key}` doesn't exists in the `{project_key}` project."
         )
 
     # (neptune) Download the lastest model checkpoint from model registry
-    model_version = neptune.init_model_version(with_id=lastest_model_version_id)
+    model_version = neptune.init_model_version(with_id=latest_model_version_id)
 
     model_version["checkpoint"].download()
 
