@@ -21,6 +21,7 @@ def main():
         "n_layers": 5,
         "dropout": 0.2,
         "learning_rate": 0.001,
+        "year":2011,
     }
 
     # (neptune) Get latest model version ID
@@ -59,7 +60,7 @@ def main():
     )
 
     dm = WalmartSalesDataModule(
-        seq_len=params["seq_len"], num_workers=8, path="../../data"
+        seq_len=params["seq_len"], num_workers=8, path="../../data", year=params["year"]
     )
 
     model = LSTMRegressor(
