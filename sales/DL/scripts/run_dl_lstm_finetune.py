@@ -23,8 +23,24 @@ def main():
         "learning_rate": 0.001,
     }
 
-    # (neptune) Download model checkpoint from model registry
-    model_version = neptune.init_model_version(with_id="TSF-DL-1",)
+    # (neptune) Get latest model version ID
+    project_key = "TSF"
+    model_key = "DL"
+    try:
+        model = neptune.init_model(
+            with_id=f"{project_key}-{model_key}",  # Your model ID here
+        )
+        model_versions_table = model.fetch_model_versions_table().to_pandas()
+        lastest_model_version_id = (
+            model_versions_table["sys/id"].sort_values().tolist()[-1]
+        )
+    except NeptuneException:
+        print(
+            "The model with the provided key `{model_key}` doesn't exists in the `{project_key}` project."
+        )
+
+    # (neptune) Download the lastest model checkpoint from model registry
+    model_version = neptune.init_model_version(with_id=lastest_model_version_id)
 
     model_version["checkpoint"].download()
 
@@ -53,7 +69,7 @@ def main():
         n_layers=params["n_layers"],
         dropout=params["dropout"],
         learning_rate=params["learning_rate"],
-        seq_len=params["seq_len"]
+        seq_len=params["seq_len"],
     )
 
     model = model.load_from_checkpoint("checkpoint.ckpt")
@@ -83,7 +99,9 @@ def main():
     project_key = neptune_logger.experiment["sys/id"].fetch().split("-")[0]
 
     try:
-        model = neptune.init_model(key=model_key,)
+        model = neptune.init_model(
+            key=model_key,
+        )
 
         print("Creating a new model version...")
         model_version = neptune.init_model_version(model=f"{project_key}-{model_key}")
@@ -93,7 +111,9 @@ def main():
             "A model with the provided key `{model_key}` already exists in this project."
         )
         print("Creating a new model version...")
-        model_version = neptune.init_model_version(model=f"{project_key}-{model_key}",)
+        model_version = neptune.init_model_version(
+            model=f"{project_key}-{model_key}",
+        )
 
     # (neptune) Log run details
     model_version["run/id"] = neptune_logger.experiment["sys/id"].fetch()
