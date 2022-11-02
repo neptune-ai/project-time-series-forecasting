@@ -98,9 +98,3 @@ def get_prophet_data_format(X, y):
     return pd.DataFrame(
         {"ds": prophet_ds.Date.astype("datetime64"), "y": prophet_y.astype("float64")}
     )
-
-
-# Eval metric for the competition
-def WMAE(dataset, real, predicted):
-    weights = dataset.IsHoliday.apply(lambda x: 5 if x else 1)
-    return np.round(np.sum(weights * abs(real - predicted)) / (np.sum(weights)), 2)

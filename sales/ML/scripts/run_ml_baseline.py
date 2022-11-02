@@ -49,13 +49,11 @@ def main():
     # Calculate scores
     model_score = model.score(X_valid, y_valid)
     y_pred = model.predict(X_valid)
-    wmae_score = WMAE(X_valid, y_valid, y_pred)
     rmse = mean_squared_error(y_valid, y_pred)
     mae = mean_absolute_error(y_valid, y_pred)
 
     # (neptune) Log scores
     run["training/val/r2"] = model_score
-    run["training/val/wmae"] = wmae_score
     run["training/val/rmse"] = rmse
     run["training/val/mae"] = mae
 
