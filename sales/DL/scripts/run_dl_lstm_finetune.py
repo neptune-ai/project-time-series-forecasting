@@ -20,7 +20,7 @@ def main():
         "seq_len": 8,
         "batch_size": 128,
         "criterion": nn.MSELoss(),
-        "max_epochs": 2,
+        "max_epochs": 1,
         "n_features": 1,
         "hidden_dim": 512,
         "n_layers": 5,
@@ -37,7 +37,7 @@ def main():
             with_id=f"{project_key}-{model_key}",  # Your model ID here
         )
         model_versions_table = model.fetch_model_versions_table().to_pandas()
-        latest_model_version_id = model_versions_table["sys/id"].sort_values().tolist()[-1]
+        latest_model_version_id = model_versions_table["sys/id"].tolist()[-1]
 
     except NeptuneException:
         print(
