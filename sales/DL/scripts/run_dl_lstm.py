@@ -26,13 +26,11 @@ def main():
         "n_layers": 5,
         "dropout": 0.2,
         "learning_rate": 0.001,
-        "year":2010
+        "year": 2010,
     }
 
     # (neptune) Create NeptuneLogger instance
-    neptune_logger = NeptuneLogger(
-        log_model_checkpoints=False
-    )
+    neptune_logger = NeptuneLogger(log_model_checkpoints=False)
 
     early_stop = EarlyStopping(
         monitor="val_loss", min_delta=1e-4, patience=1, verbose=False, mode="min"
@@ -43,7 +41,7 @@ def main():
         max_epochs=params["max_epochs"],
         callbacks=[early_stop, lr_logger],
         logger=neptune_logger,  # neptune integration
-        accelerator='gpu'
+        accelerator="gpu",
     )
 
     dm = WalmartSalesDataModule(
@@ -64,11 +62,13 @@ def main():
     trainer.fit(model, dm)
 
     # Manually save model checkpoint
-    ckpt_name='pre-trained'
+    ckpt_name = "pre-trained"
     trainer.save_checkpoint(f"{ckpt_name}.ckpt")
 
     # (neptune) Log model checkpoint
-    neptune_logger.experiment[f"training/model/checkpoints/{ckpt_name}"].upload(f"{ckpt_name}.ckpt")
+    neptune_logger.experiment[f"training/model/checkpoints/{ckpt_name}"].upload(
+        f"{ckpt_name}.ckpt"
+    )
 
     # Test model
     test_loader = dm.test_dataloader()
@@ -119,7 +119,9 @@ def main():
     # (neptune) Download model checkpoint from Run
     neptune_logger.experiment.wait()
     model_ckpt_name = get_model_ckpt_name(neptune_logger.experiment)
-    neptune_logger.experiment[f"training/model/checkpoints/{model_ckpt_name}"].download()
+    neptune_logger.experiment[
+        f"training/model/checkpoints/{model_ckpt_name}"
+    ].download()
 
     # (neptune) Upload model checkpoint to Model registry
     model_version["checkpoint"].upload(f"{model_ckpt_name}.ckpt")
