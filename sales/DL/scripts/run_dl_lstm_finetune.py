@@ -41,7 +41,7 @@ def main():
 
     except NeptuneException:
         print(
-            f"The model with the provided key `{model_key}` doesn't exists in the `{project_key}` project."
+            f"The model with the provided key `{model_key}` doesn't exist in the `{project_key}` project."
         )
 
     # (neptune) Download the lastest model checkpoint from model registry
