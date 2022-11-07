@@ -15,7 +15,9 @@ plt.ioff()
 
 def main():
     # (neptune) Initialize Neptune run
-    run = neptune.init_run()
+    run = neptune.init_run(
+        tags=["baseline", "xgboost", "walmart-sales"]
+    )
     neptune_callback = NeptuneCallback(run=run, log_tree=[0, 1, 2, 3])
 
     DATA_PATH = "./sales/data"
