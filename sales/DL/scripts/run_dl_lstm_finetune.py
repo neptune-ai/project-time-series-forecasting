@@ -130,6 +130,11 @@ def main():
             model=f"{project_key}-{model_key}",
         )
 
+    # (neptune) Log model version details to run
+    neptune_logger.experiment["model_version/id"] = model_version["sys/id"].fetch()
+    neptune_logger.experiment["model_version/model_id"] = model_version["sys/model_id"].fetch()
+    neptune_logger.experiment["model_version/url"] = model_version.get_url()
+
     # (neptune) Log run details
     model_version["run/id"] = neptune_logger.experiment["sys/id"].fetch()
     model_version["run/name"] = neptune_logger.experiment["sys/name"].fetch()
