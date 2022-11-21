@@ -13,7 +13,7 @@ plt.ioff()
 def main():
 
     # (neptune) Initialize Neptune run
-    run = neptune.init_run(tags=["eda", "walmart-sales", "showcase-run"])
+    run = neptune.init_run(tags=["eda", "walmart-sales"])
 
     DATA_PATH = "./sales/data"
 
