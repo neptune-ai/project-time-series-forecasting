@@ -1,7 +1,7 @@
 # Project-Time-Series-Forecasting
 
-Example TSF project for the following use case:
-
-* Sales Forecasting --> [Explore project in the app](https://app.neptune.ai/o/common/org/project-time-series-forecasting/experiments?split=tbl&dash=charts&viewId=97a244b7-fb23-40a5-a021-261401d4efef)
+> **Warning** This repository has been archived
 
 
+You can find the updated time-series forecasting examples with neptune.ai here -->   
+https://github.com/neptune-ai/examples/tree/main/use-cases/time-series-forecasting.
