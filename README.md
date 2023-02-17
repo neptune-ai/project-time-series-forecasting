@@ -1,6 +1,6 @@
 # Project-Time-Series-Forecasting
 
-:warning: This repository has been archived. :warning:  
+> **Warning** This repository has been archived
 
 
 You can find the updated time-series forecasting examples with neptune.ai here -->   
